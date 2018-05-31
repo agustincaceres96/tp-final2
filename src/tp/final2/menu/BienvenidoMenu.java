@@ -30,6 +30,8 @@ public class BienvenidoMenu {
                 recep.imprimir();
                      break;
             case 3:  
+                PasajeroMenu pasa = new PasajeroMenu();
+                pasa.imprimir();
                      break;
             default: break;
         }
