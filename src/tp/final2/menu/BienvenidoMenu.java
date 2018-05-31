@@ -11,6 +11,7 @@ public class BienvenidoMenu {
         System.out.println("=== Bienvenido al Hotel ===");
         System.out.println("1. Administrador");
         System.out.println("2. Recepcionista");
+        System.out.println("2. Pasajero");
         System.out.print("Ingrese la opcion: ");
         
         while (!scanner.hasNextInt()) {
@@ -20,9 +21,15 @@ public class BienvenidoMenu {
         int seleccion = scanner.nextInt();
         
          switch (seleccion) {
-            case 1:  
+            case 1:
+                AdminMenu adm =new AdminMenu();
+                adm.imprimir();
                      break;
-            case 2:  
+            case 2:
+                RecepcionistaMenu recep =new RecepcionistaMenu();
+                recep.imprimir();
+                     break;
+            case 3:  
                      break;
             default: break;
         }
