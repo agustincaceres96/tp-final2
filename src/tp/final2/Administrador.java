@@ -41,7 +41,7 @@ public class Administrador extends Persona {
     }
 
     public String agregarCliente(String dni, String origen, String nombre, String apellido, int telefono, String direccion, String email) {
-        Pasajero turista = new Pasajero(dni, origen, nombre, apellido, telefono, direccion, email);
+        Pasajero turista = new Pasajero(nombre, apellido, telefono, direccion, email,dni, origen);
         for (int i = 0; i < clientes.length; i++) {
             if (clientes[i] == null) {
                 clientes[i] = turista;

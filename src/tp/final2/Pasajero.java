@@ -1,33 +1,22 @@
-
 package tp.final2;
 
+import java.util.*;
 
 public class Pasajero extends Persona {
-       private String dni;
-    private String origen;
-    private Reserva[] Pedido;
-    private Habitacion[] pieza;
 
+    private ArrayList<Reserva> Pedido;
+    protected ArrayList<Habitacion> pieza;
 
-    public Pasajero(String nombre, String apellido,String dni, String origen, int telefono, String direccion, String email) {
-        super(nombre, apellido, telefono, direccion, email);
-        this.dni = dni;
-        this.origen = origen;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public String getOrigen() {
-        return origen;
+    public Pasajero(String nombre, String apellido, int telefono, String direccion, String email, String dni, String origen) {
+        super(nombre, apellido, telefono, direccion, email, dni, origen);
     }
     
 
+
     public void CancelarReserva(int CodigoReserva) {
-        for (int i = 0; i < Pedido.length; i++) {
-            if (Pedido[i] != null && Pedido[i].getCodigoReserva() == CodigoReserva) {
-                Pedido[i] = null;
+        for (int i = 0; i < Pedido.size(); i++) {
+            if (Pedido.get(i) != null && Pedido.get(i).getCodigoReserva() == CodigoReserva) {
+                Pedido.remove(i);
                 break;
             }
         }
@@ -36,9 +25,12 @@ public class Pasajero extends Persona {
 
     @Override
     public String toString() {
-        return "Pasajero{" + "dni=" + dni + ", origen=" + origen + ", Pedido=" + Pedido + ", pieza=" + pieza + '}';
+        return "Pasajero{" + "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion + ", email=" + email + ", dni=" + dni + ", origen=" + origen + "Pedido=" + Pedido + ", pieza=" + pieza + '}';
     }
+
     
-    
-    
+   
+
+   
+
 }

@@ -8,19 +8,22 @@ public class Reserva extends Habitacion {
     private int CodigoReserva;
     private LocalDate Entrada;
     private LocalDate Salida;
-    private ArrayList<Habitacion> pieza;
-    private Pasajero[] cliente;
+    private ArrayList<Habitacion> pieza;//una sola no es arrayList
+    private ArrayList<Pasajero> clientes;
 
     public Reserva() {
     }
 
-    public Reserva( LocalDate Entrada, ArrayList<Habitacion> pieza, Pasajero[] cliente) {
+    public Reserva(LocalDate Entrada, ArrayList<Habitacion> pieza, ArrayList<Pasajero> clientes) {
         super();
-        this.CodigoReserva = CodigoReserva;
         this.Entrada = Entrada;
         this.pieza = pieza;
-        this.cliente = cliente;
+        this.clientes = clientes;
     }
+
+  
+
+  
 
    
 
@@ -40,10 +43,10 @@ public class Reserva extends Habitacion {
         return pieza;
     }
 
-
-    public Pasajero[] getCliente() {
-        return cliente;
+    public ArrayList<Pasajero> getClientes() {
+        return clientes;
     }
+
 
     public Tipo getTipo() {
         return tipo;
@@ -51,7 +54,9 @@ public class Reserva extends Habitacion {
 
     @Override
     public String toString() {
-        return "Reserva{" + "CodigoReserva=" + CodigoReserva + ", Entrada=" + Entrada + ", Salida=" + Salida + ", pieza=" + pieza + ", cliente=" + cliente + '}';
+        return "Reserva{" + "CodigoReserva=" + CodigoReserva + ", Entrada=" + Entrada + ", Salida=" + Salida + ", pieza=" + pieza + ", clientes=" + clientes + '}';
     }
+
+
 
 }
