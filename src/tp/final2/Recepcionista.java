@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Recepcionista extends Persona {
 
-    private Pasajero[] clientes;
+    private ArrayList<Pasajero> clientes;
     private ArrayList<Habitacion> pieza;
-    private Reserva[] alquileres;
+    private ArrayList<Reserva> alquileres;
     private ArrayList<Recepcionista> recepcion;
     private String usuario;
     private String contraseña;
@@ -17,10 +17,6 @@ public class Recepcionista extends Persona {
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
-
-    
-
-    
 
     public String getUsuario() {
         return usuario;
@@ -73,9 +69,9 @@ public class Recepcionista extends Persona {
             piezas.setListadoDisponible(piezas.getListadoDisponible() - 1);;
             Reserva alquiler = new Reserva(LocalDate.now(), pieza, clientes);
 
-            for (int i = 0; i < alquileres.length; i++) {
-                if (alquileres[i] == null) {
-                    alquileres[i] = alquiler;
+            for (int i = 0; i < alquileres.size(); i++) {
+                if (alquileres == null) {
+                    alquileres.add(alquiler);
                     break;
                 }
             }
@@ -94,18 +90,19 @@ public class Recepcionista extends Persona {
         return null;
     }
 
-    public Habitacion checkIn(String pass, String usuarios, int CodigoReserva) {
+    public Habitacion checkIn(int pass,Pasajero invitado, int CodigoReserva) {
+        Recepcionista recepcion = new Recepcionista(this.usuario, this.contraseña, this.nombre, this.apellido);
         if (!this.contraseña.equals(pass)) {
 
-            Recepcionista reception = this.ingresoSistemaRecepsion(usuarios, pass);
+             invitado = this.buscarPasajero(dni);
 
-            if (reception == null) {
-                reception = new Recepcionista(usuario,contraseña,nombre,apellido);
-                recepcion.add(reception);
+            if (invitado == null) {
+                invitado = new Pasajero(nombre, apellido,telefono, direccion, email,dni,origen);
+                recepcion.alquiler(CodigoReserva,invitado.nombre);
             }
             Habitacion room = buscarReserva(CodigoReserva);
-            if (room != null && reception.buscarReserva(CodigoReserva) == null) {
-                reception.checkIn(pass, usuarios, CodigoReserva);
+            if (room != null && this.buscarReserva(CodigoReserva) == null) {
+                this.checkIn(pass,invitado, CodigoReserva);
                 room.setListadoDisponible(room.getListadoDisponible() - 1);
 
             }
@@ -113,16 +110,16 @@ public class Recepcionista extends Persona {
 
         return null;
     }
-    
-        public void CancelarReserva(int CodigoReserva) {
-        for (int i = 0; i < alquileres.length; i++) {
-            if (alquileres[i] != null && alquileres[i].getCodigoReserva() == CodigoReserva) {
-                alquileres[i] = null;
+
+    public void CancelarReserva(int CodigoReserva) {
+        for (int i = 0; i < alquileres.size(); i++) {
+            if (alquileres != null && alquileres.get(i).getCodigoReserva() == CodigoReserva) {
+                alquileres = null;
                 break;
             }
         }
 
-    }   
+    }
 
     public void ListadoHabitacionesDisponibles() {
         for (int a = 0; a < pieza.size(); a++) {
@@ -130,14 +127,60 @@ public class Recepcionista extends Persona {
         }
     }
 
+    public void ModificarPasajero(int amodf) {
+
+        if (amodf < clientes.size()) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("1. Para modificar nombre");
+            System.out.println("2. Para modificar apellido");
+            System.out.println("3. Para modificar origen");
+            System.out.println("4. Para modificar dni");
+            System.out.println("5. Para modificar direccion");
+            System.out.println("6. Para modificar email");
+            System.out.println("6. Para modificar telefono");
+
+            System.out.print("Ingrese la opcion: ");
+            while (!scanner.hasNextInt()) {
+                System.out.print("Ingrese la opcion: ");
+                scanner.next();
+            }
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    clientes.get(amodf).setNombre(nombre);
+
+                    break;
+                case 2:
+                    clientes.get(amodf).setApellido(apellido);
+                    break;
+                case 3:
+                    clientes.get(amodf).setOrigen(origen);
+
+                    break;
+                case 4:
+                    clientes.get(amodf).setDni(dni);
+                    break;
+                case 5:
+                    clientes.get(amodf).setDireccion(direccion);
+
+                    break;
+                case 6:
+                    clientes.get(amodf).setEmail(email);
+                    break;
+                case 7:
+                    clientes.get(amodf).setTelefono(telefono);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }
+
     @Override
     public String toString() {
         return "Recepcionista{" + "nombre=" + nombre + ", apellido=" + apellido + "usuario=" + usuario + '}';
     }
-    
-    
-    
-    
-     
 
 }
