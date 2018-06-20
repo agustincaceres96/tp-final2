@@ -29,8 +29,7 @@ public class PasajeroMenu {
     
      switch (seleccion) {
             case 1:
-               Pasajero nuevo = new Pasajero("marcelo", "tinelli" , "01418360" , "Argentina", 4752222, "colon 5150", "marcetine@gmail.com");
-               
+               Pasajero nuevo = new Pasajero("marcelo", "tinelli" , 4871313 , "Colon 341", "marcetine@gmail.com", "41444213", "Argentina");
                      break;
             case 2:
                 //nuevo.CancelarReserva(CodigoReserva);
